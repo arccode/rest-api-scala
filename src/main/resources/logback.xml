@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <Encoding>UTF-8</Encoding>
+        <encoder>
+            <pattern>%date [%thread] %-5level %logger{80}.%method:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="normal"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <encoder>
+            <pattern>%date [%thread] %-5level %logger{80}.%method:%L - %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/gyenno-service_normal.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="task"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <encoder>
+            <pattern>%date [%thread] %-5level %logger{80}.%method:%L - %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/gyenno-service_task.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="thirdLib"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <encoder>
+            <pattern>%date [%thread] %-5level %logger{80}.%method:%L - %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/gyenno-service_third.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 设置包日志级别 -->
+    <logger name="com.zaxxer.hikari" level="INFO" additivity="false">
+        <appender-ref ref="normal"/>
+    </logger>
+    <logger name="akka.http.impl.engine.client.PoolGateway" level="INFO" additivity="false">
+        <appender-ref ref="normal"/>
+    </logger>
+
+    <logger name="io.swagger" level="INFO" additivity="false">
+        <appender-ref ref="normal"/>
+    </logger>
+
+    <logger name="net.arccode">
+        <appender-ref ref="normal" additivity="false"/>
+    </logger>
+
+    <logger name="net.arccode.task" additivity="false">
+        <appender-ref ref="task"/>
+    </logger>
+
+    <logger name="io.getquill" additivity="false">
+        <appender-ref ref="thirdLib"/>
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
