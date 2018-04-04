@@ -9,3 +9,4 @@ src/main/scala/models/NewYear.scala
 logs/*
 build/*
 logs/*
+.DS_Store
