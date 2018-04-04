@@ -39,5 +39,5 @@ create database `rest_api_scala` DEFAULT CHARACTER SET utf8 COLLATE utf8_general
 
 ```
 # 在浏览器中键入如下url
-http://127.0.0.1:9100/rest_api_scala/swagger
+http://127.0.0.1:9100/rest_api_scala/swagger 
 ```
