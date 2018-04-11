@@ -7,7 +7,7 @@ import sbt.Keys.mainClass
 // -------- 通用配置 ---------------------
 // --------------------------------------
 lazy val commonSettings = Seq(
-  version := "0.0.1",
+  version := "0.0.2",
   scalaVersion := "2.12.2",
   javaOptions in Universal := Seq(
     "-Dconfig.file=conf/application.conf"
