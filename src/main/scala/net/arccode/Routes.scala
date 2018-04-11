@@ -3,7 +3,7 @@ package net.arccode
 import akka.http.scaladsl.model.HttpMethods
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
-import net.arccode.api.{DocApi, UserApi}
+import net.arccode.api.{CommonApi, DocApi, UserApi}
 import net.arccode.foundation.handler.{ACExceptionHandler, ACRejectionHandler}
 import net.arccode.foundation.module.ConfigModule
 import net.arccode.service.SwaggerDocService
@@ -19,7 +19,8 @@ trait Routes
     with ACRejectionHandler
     with ConfigModule
     with DocApi
-    with UserApi {
+    with UserApi
+    with CommonApi {
 
   // CORS 设置
   val settings = CorsSettings.defaultSettings.copy(
@@ -39,7 +40,8 @@ trait Routes
       handleErrors {
         (pathPrefix(path) {
           docApi ~
-            usersApi
+            usersApi ~
+            commonApi
         } ~ new SwaggerDocService(system).routes)
       }
     }

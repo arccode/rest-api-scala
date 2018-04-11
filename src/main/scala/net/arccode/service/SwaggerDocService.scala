@@ -8,7 +8,7 @@ import io.swagger.models.auth.{
   In,
   SecuritySchemeDefinition
 }
-import net.arccode.api.UserApi
+import net.arccode.api.{CommonApi, UserApi}
 import net.arccode.foundation.module.ConfigModule
 
 /**
@@ -21,7 +21,7 @@ class SwaggerDocService(system: ActorSystem)
     extends SwaggerHttpService
     with ConfigModule {
   override def apiClasses: Set[Class[_]] =
-    Set(classOf[UserApi])
+    Set(classOf[UserApi], classOf[CommonApi])
 
   override val host = swaggerHost
   override val basePath = swaggerBasePath
