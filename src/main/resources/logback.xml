@@ -69,6 +69,10 @@
         <appender-ref ref="normal" additivity="false"/>
     </logger>
 
+    <logger name="akka">
+        <appender-ref ref="normal"/>
+    </logger>
+
     <logger name="net.arccode.task" additivity="false">
         <appender-ref ref="task"/>
     </logger>

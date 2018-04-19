@@ -42,6 +42,39 @@ create database `rest_api_scala` DEFAULT CHARACTER SET utf8 COLLATE utf8_general
 http://127.0.0.1:9100/rest_api_scala/swagger
 ```
 
+### 针对各种环境打包
+
+```
+# 测试环境
+sbt testPackage/universal:packageBin
+```
+在项目目录下`build/test/target/universal`可找到打包完成的`api-rest_test_0.0.2_build20180419.zip`包.
+
+
+预发布环境/生产环境, 按照build.sbt中 testPackage 子模块规则进行编写即可.
+
+### 运行生成包
+
+#### 前台运行
+
+```
+# 解压
+unzip api-rest_test_0.0.2_build20180419.zip
+cd api-rest_test_0.0.2_build20180419
+chmod +x ./bin/testpackage
+./bin/testpackage
+```
+
+#### 后台运行
+
+```
+# 解压
+unzip api-rest_test_0.0.2_build20180419.zip
+cd api-rest_test_0.0.2_build20180419
+chmod +x ./bin/testpackage
+nohup ./bin/testpackage&
+```
+
 ## 版本发布历史
 
 ### v0.0.1
