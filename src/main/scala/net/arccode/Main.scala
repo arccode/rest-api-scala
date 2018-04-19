@@ -5,7 +5,8 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.directives.DebuggingDirectives
 import com.typesafe.scalalogging.Logger
 import net.arccode.dao.SelectLocationsByParentCode
-import net.arccode.foundation.module.{ConfigModule, MigrationModule}
+import net.arccode.dict.SymbolDict
+import net.arccode.foundation.module.{ApplicationModule, ConfigModule, MigrationModule}
 
 import scala.util.{Failure, Success}
 
@@ -15,7 +16,12 @@ import scala.util.{Failure, Success}
   * @author http://arccode.net
   * @since 2018-04-04
   */
-object Main extends App with ConfigModule with MigrationModule with Routes {
+object Main
+    extends App
+    with ConfigModule
+    with MigrationModule
+    with Routes
+    with ApplicationModule {
 
   private val log = Logger("Main")
 
@@ -33,8 +39,10 @@ object Main extends App with ConfigModule with MigrationModule with Routes {
       log.info("日志级别: {}", system.settings.LogLevel)
 
       // 以下actor一次创建, 重复使用; 聚合actor中创建的actor, 即用即建, 用完销毁.
-      system.actorOf(Props[SelectLocationsByParentCode],
+      val actorRef = system.actorOf(Props[SelectLocationsByParentCode],
                      "selectLocationsByParentCode")
+
+      log.info("{}, {}", SymbolDict.DEBUG_DELIMITER, actorRef.path)
     }
     case Failure(t) ⇒ {
       log.info("主线程错误: {}", t.getClass.getName)
