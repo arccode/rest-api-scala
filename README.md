@@ -100,5 +100,8 @@ nohup ./bin/testpackage&
 * 支持`tell`和`ask`两种调用模式, 推荐使用`tell`模式
 * 弃用默认的`Java Serializer`序列化, 使用twitter `chill-akka`进行序列化和反序列化
 
-
-	
+## 关联项目
+* [https://github.com/arccode/rest-api-scala](https://github.com/arccode/rest-api-scala)
+* [https://github.com/arccode/rest-api-protocol](https://github.com/arccode/rest-api-protocol)
+* [https://github.com/arccode/akka-remote-client-scala](https://github.com/arccode/akka-remote-client-scala)
+* [https://github.com/arccode/akka-remote-client-java](https://github.com/arccode/akka-remote-client-java)
